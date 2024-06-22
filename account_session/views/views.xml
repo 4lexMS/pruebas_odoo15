@@ -14,11 +14,14 @@
 
       <field name="cash_control" invisible="1"/>
       <field name="arch" type="xml">
+        
+        <!-- modificar button_reprocess-->
         <header>
           <xpath expr="//button[@name='button_reprocess']" position="attributes">
-            <attribute name="attrs">{'invisible': [('state','=','confirm')]}</attribute>
+            <attribute name="attrs">{'invisible': [('state','=','confirm')]} groups="admin_group"</attribute>
           </xpath>
         </header>
+
         <xpath expr="//field[@name='journal_id']" position="replace">
           <field name="journal_id" string="Diario Contable" />
         </xpath>
