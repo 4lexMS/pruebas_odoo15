@@ -1,0 +1,30 @@
+<odoo>
+  <data>
+    <!-- creacion de grupo administrador -->
+    <record id="admin_group" model="res.groups">
+      <field name="name">Administradoooor</field>
+      <field name="comment">Permisos de administrador</field>
+    </record>
+
+    <!-- herencia de vista -->
+    <record model="ir.ui.view" id="account_session.list">
+      <field name="name">account_session list</field>
+      <field name="model">account.bank.statement</field>
+      <field name="inherit_id" ref="account.view_bank_statement_form" />
+
+      <field name="cash_control" invisible="1"/>
+      <field name="arch" type="xml">
+        <header>
+          <xpath expr="//button[@name='button_reprocess']" position="attributes">
+            <attribute name="attrs">{'invisible': [('state','=','confirm')]}</attribute>
+          </xpath>
+        </header>
+        <xpath expr="//field[@name='journal_id']" position="replace">
+          <field name="journal_id" string="Diario Contable" />
+        </xpath>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>
