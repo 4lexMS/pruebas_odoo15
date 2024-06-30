@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!-- vista tree de flota -->
+    <record model="ir.ui.view" id="flota_inc_tree">
+      <field name="name">flota_inc_list</field>
+      <field name="model">flota_inc.flota_inc</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="marca" />
+          <field name="modelo" />
+          <field name="placa" />
+          <field name="chofer" />
+          <field name="anio" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- formulario de flota -->
+
+    <record model="ir.ui.view" id="flota_inc_form">
+      <field name="name">Vehiculo</field>
+      <field name="model">flota_inc.flota_inc</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="marca"/>
+              <field name="modelo"/>
+              <field name="placa"/>
+              <field name="chofer" domain="[('job_id.name', '=', 'Chofer')]"/>
+              <field name="anio"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- vista kanban de flota -->
+
+    <record model="ir.ui.view" id="flota_inc_kanban">
+      <field name="name">flota_inc_kanban</field>
+      <field name="model">flota_inc.flota_inc</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="placa"/>
+                <field name="chofer"/>
+                <field name="anio"/>
+              </div>
+            </t>
+          </templates>
+          <field name="marca"/>
+          <field name="modelo"/>
+          <field name="placa"/>
+          <field name="chofer"/>
+          <field name="anio"/>
+        </kanban>
+      </field>
+    </record>
+    
+    <!-- formulario empleado heredado -->
+    
+    <record model="ir.ui.view" id="chofer_inc_form">
+      <field name="name">hr.employee.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"></field>
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+        <xpath expr="//sheet/group/group/field[@name='mobile_phone']" position="replace">
+            <field name="mobile_phone" string ="Number#"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- vista Choferes heredado -->
+    <record model="ir.ui.view" id="view_employee_tree_inherit">
+      <field name="name">hr.employee.tree.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_tree"></field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="work_phone"/>
+          <field name="work_email"/>
+          <field name="company_id"/>
+          <field name="department_id"/>
+          <field name="job_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- vista Gastos heredado -->
+
+    <record model="ir.ui.view" id="view_expense_tree_inherit">
+      <field name="name">hr.expense.tree.inherited</field>
+      <field name="model">hr.expense</field>
+      <field name="inherit_id" ref="hr_expense.view_my_expenses_tree"></field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="employee_id"/>
+          <field name="date"/>
+          <field name="name"/>
+          <field name="product_id"/>
+          <field name="unit_amount"/>
+          <field name="quantity"/>
+          <field name="total_amount"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions of flota  -->
+    <record model="ir.actions.act_window" id="flota_inc_action_window">
+      <field name="name">INCUBADORA - QUERA</field>
+      <field name="res_model">flota_inc.flota_inc</field>
+      <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="chofer_action_window">
+      <field name="name">CHOFERES</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_id" ref="view_employee_tree_inherit"/>
+      <field name="domain">[('job_id.name', '=', 'Chofer')]</field>
+    </record>
+
+    <!-- 
+    <record model="ir.actions.act_window.view" id="chofer_view_action_window_tree">
+      <field name="sequence" eval="1"></field>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="hr.view_employee_tree"></field>
+      <field name="act_window_id" ref="chofer_action_window"></field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="chofer_view_action_window_form">
+      <field name="sequence" eval="2"></field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="chofer_inc_form"></field>
+      <field name="act_window_id" ref="chofer_action_window"></field>
+    </record>
+  -->
+    <record model="ir.actions.act_window" id="gastos_action_window">
+      <field name="name">Gastos</field>
+      <field name="res_model">hr.expense</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="view_id" ref="view_expense_tree_inherit"/>
+      <field name="domain">[('employee_id.job_id.name', '=', 'Chofer')]</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Flota Incupasaje" id="menu_flota_inc_root"/>
+
+    <menuitem name="Flota" id="menu_flota_inc" parent="menu_flota_inc_root"
+      action="flota_inc_action_window"/>/
+      
+    <menuitem name="Incubadora" id="menu2_flota_inc" parent="menu_flota_inc"
+      action="flota_inc_action_window"/>
+
+    <menuitem name="Choferes" id="menu_chofer" parent="menu_flota_inc_root"
+      action="chofer_action_window"/>
+
+    <menuitem name="Gastos" id="menu_gastos" parent="menu_flota_inc_root"
+      action="gastos_action_window"/>
+  </data>
+</odoo>

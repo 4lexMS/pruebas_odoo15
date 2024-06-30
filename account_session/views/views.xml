@@ -7,17 +7,12 @@
       <field name="model">account.bank.statement</field>
       <field name="inherit_id" ref="account.view_bank_statement_form" />
       <field name="arch" type="xml">
-        <header>
           <xpath expr="//button[@name='button_reprocess']" position="attributes">
-            <attribute name="attrs">{'invisible': [('state','=','confirm')]}</attribute>
+            <attribute name="groups">account_session.admin_group</attribute>
           </xpath>
-        </header>
-        <xpath expr="//field[@name='journal_id']" position="replace">
-          <field name="journal_id" string="Diario Contable" />
-        </xpath>
       </field>
     </record>
-    <!-- explicit list view definition -->
+    <!-- crear grupo-->
     <record id="admin_group" model="res.groups">
       <field name="name">Administradoooor</field>
       <field name="comment">Permisos de administrador</field>
