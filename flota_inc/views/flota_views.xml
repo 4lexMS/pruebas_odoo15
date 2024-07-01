@@ -83,14 +83,15 @@
       <field name="model">hr.employee</field>
       <field name="inherit_id" ref="hr.view_employee_tree"></field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="work_phone"/>
-          <field name="work_email"/>
-          <field name="company_id"/>
-          <field name="department_id"/>
-          <field name="job_id"/>
-        </tree>
+        <xpath expr="//field[@name='activity_ids']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='activity_date_deadline']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='parent_id']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
       </field>
     </record>
 
@@ -158,6 +159,12 @@
       action="flota_inc_action_window"/>/
       
     <menuitem name="Incubadora" id="menu2_flota_inc" parent="menu_flota_inc"
+      action="flota_inc_action_window"/>
+
+    <menuitem name="San Jose" id="menu3_flota_inc" parent="menu_flota_inc"
+      action="flota_granja_action_window"/>
+    
+    <menuitem name="Yuluc" id="menu4_flota_inc" parent="menu_flota_inc"
       action="flota_inc_action_window"/>
 
     <menuitem name="Choferes" id="menu_chofer" parent="menu_flota_inc_root"
