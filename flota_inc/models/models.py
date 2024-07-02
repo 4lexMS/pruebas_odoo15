@@ -8,7 +8,8 @@ class FlotaInc(models.Model):
     marca = fields.Char()
     modelo = fields.Char()
     placa = fields.Char()
-    chofer = fields.Many2one('hr.employee', string='Chofer', tracking=True)
+    chofer = fields.Many2one('hr.employee', string='Chofer',
+    domain="[('job_id.name', '=', 'Chofer')]")
     anio = fields.Char(string="Año")
 
 class FlotaGranja(models.Model):
@@ -21,11 +22,12 @@ class FlotaGranja(models.Model):
     chofer = fields.Many2one('hr.employee', string='Chofer', tracking=True)
     anio = fields.Char(string="Año")
 
-class Employee(models.Model):
-    _inherit = 'hr.employee'
-    job_id = fields.Many2one('hr.job', string="Puesto de Trabajo")
+class FlotaYuluc(models.Model):
+    _name = 'flota_yuluc.flota_yuluc'
+    _description = 'Flota Granja Yuluc'
 
-class HrExpense(models.Model):
-    _inherit = 'hr.expense'
-
-    employee_id = fields.Many2one('hr.employee', string="Empleado")
+    marca = fields.Char()
+    modelo = fields.Char()
+    placa = fields.Char()
+    chofer = fields.Many2one('hr.employee', string='Chofer', tracking=True)
+    anio = fields.Char(string="Año")

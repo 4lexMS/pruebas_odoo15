@@ -25,9 +25,12 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/flota_views.xml',
-        'views/flota_sanjose_views.xml',
-        'views/templates.xml',
+        'views/flota_Incubadora_views.xml',
+        'views/flota_SanJose_views.xml',
+        'views/flota_Yuluc_views.xml',
+        'views/employee_inherit_views.xml',
+        'views/expense_inherit_views.xml',
+        'views/menus_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

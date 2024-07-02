@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- vista tree empleados por  Choferes heredado -->
+        <record model="ir.ui.view" id="view_employee_tree_inherit">
+            <field name="name">hr.employee.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_date_deadline']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- formulario empleado heredado -->
+
+        <record
+            model="ir.ui.view" id="chofer_inc_form">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='mobile_phone']" position="attributes">
+                    <attribute name="string">tele</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record
+        model="ir.actions.act_window" id="chofer_action_window">
+        <field name="name">Choferes</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_employee_tree_inherit" />
+        <field name="domain">[('job_id.name', '=', 'Chofer')]</field>
+      </record>
+    </data>
+</odoo>

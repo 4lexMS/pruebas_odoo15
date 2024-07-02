@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- vista tree de flota granja -->
+        <record model="ir.ui.view" id="flota_granja_tree">
+            <field name="name">flota_granja_list</field>
+            <field name="model">flota_granja.flota_granja</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="marca" />
+                    <field name="modelo" />
+                    <field name="placa" />
+                    <field name="chofer" />
+                    <field name="anio" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- vista formulario de flota granja -->
+        <record model="ir.ui.view" id="flota_granja_form">
+            <field name="name">flota_granja_form</field>
+            <field name="model">flota_granja.flota_granja</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="marca" />
+                            <field name="modelo" />
+                            <field name="placa" />
+                            <field name="chofer" domain="[('job_id.name', '=', 'Chofer')]" />
+                            <field name="anio" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- vista kanban de flota granja -->
+
+        <record model="ir.ui.view" id="flota_granja_kanban">
+            <field name="name">flota_granja_kanban</field>
+            <field name="model">flota_granja.flota_granja</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <field name="marca" />
+                                <field name="modelo" />
+                                <field name="placa" />
+                                <field name="chofer" />
+                                <field name="anio" />
+                            </div>
+                        </t>
+                    </templates>
+                    <field name="marca" />
+                    <field name="modelo" />
+                    <field name="placa" />
+                    <field name="chofer" />
+                    <field name="anio" />
+                </kanban>
+            </field>
+        </record>
+
+        <!-- acción de flota granja san jose -->   
+
+        <record model="ir.actions.act_window" id="flota_granja_action_window">
+            <field name="name">San José</field>
+            <field name="res_model">flota_granja.flota_granja</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>   
+
+    </data>
+</odoo>

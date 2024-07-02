@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem
+            name="Flota Incupasaje" id="menu_flota_inc_root" />
+
+        <menuitem name="Flota" id="menu_flota_inc"
+            parent="menu_flota_inc_root"
+            action="flota_inc_action_window" />
+
+        <menuitem name="Incubadora" id="menu2_flota_inc"
+            parent="menu_flota_inc"
+            action="flota_inc_action_window" />
+
+        <menuitem name="San Jose" id="menu3_flota_inc"
+            parent="menu_flota_inc"
+            action="flota_granja_action_window" />
+
+        <menuitem name="Yuluc" id="menu4_flota_inc"
+            parent="menu_flota_inc"
+            action="flota_yuluc_action_window" />
+
+        <menuitem name="Choferes" id="menu_chofer"
+            parent="menu_flota_inc_root"
+            action="chofer_action_window" />
+
+        <menuitem name="Gastos" id="menu_gastos"
+            parent="menu_flota_inc_root"
+            action="gastos_action_window" />
+
+    </data>
+</odoo>

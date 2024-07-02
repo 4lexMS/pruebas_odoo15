@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- vista Tree Gastos heredado -->
+
+        <record
+            model="ir.ui.view" id="view_expense_tree_inherit">
+            <field name="name">hr.expense.tree.inherited</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.view_my_expenses_tree"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_mode']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='total_amount']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record
+            model="ir.actions.act_window" id="gastos_action_window">
+            <field name="name">Gastos</field>
+            <field name="res_model">hr.expense</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" ref="view_expense_tree_inherit" />
+            <field name="domain">[('employee_id.job_id.name', '=', 'Chofer')]</field>
+        </record>
+
+    </data>
+</odoo>

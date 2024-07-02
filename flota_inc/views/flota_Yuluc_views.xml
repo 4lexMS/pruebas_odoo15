@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <!-- vista tree de flota granja -->
-        <record model="ir.ui.view" id="flota_granja_tree">
-            <field name="name">flota_granja_list</field>
-            <field name="model">flota_granja.flota_granja</field>
+        <!-- vista tree de flota Yuluc -->
+        <record model="ir.ui.view" id="flota_yuluc_tree">
+            <field name="name">flota_yuluc_list</field>
+            <field name="model">flota_yuluc.flota_yuluc</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="marca" />
@@ -16,10 +16,10 @@
             </field>
         </record>
 
-        <!-- vista formulario de flota granja -->
-        <record model="ir.ui.view" id="flota_granja_form">
-            <field name="name">flota_granja_form</field>
-            <field name="model">flota_granja.flota_granja</field>
+        <!-- vista formulario de flota Yuluc -->
+        <record model="ir.ui.view" id="flota_yuluc_form">
+            <field name="name">flota_yuluc_form</field>
+            <field name="model">flota_yuluc.flota_yuluc</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -35,11 +35,11 @@
             </field>
         </record>
 
-        <!-- vista kanban de flota granja -->
+        <!-- vista kanban de flota Yuluc -->
 
-        <record model="ir.ui.view" id="flota_granja_kanban">
-            <field name="name">flota_granja_kanban</field>
-            <field name="model">flota_granja.flota_granja</field>
+        <record model="ir.ui.view" id="flota_yuluc_kanban">
+            <field name="name">flota_yuluc_kanban</field>
+            <field name="model">flota_yuluc.flota_yuluc</field>
             <field name="arch" type="xml">
                 <kanban>
                     <templates>
@@ -62,21 +62,13 @@
             </field>
         </record>
 
-        <!-- acción de flota granja san jose -->   
+        <!-- acción de flota granja Yuluc -->   
 
-        <record model="ir.actions.act_window" id="flota_granja_action_window">
-            <field name="name">INCUBADORA - GRANJA</field>
-            <field name="res_model">flota_granja.flota_granja</field>
+        <record model="ir.actions.act_window" id="flota_yuluc_action_window">
+            <field name="name">Yuluc</field>
+            <field name="res_model">flota_yuluc.flota_yuluc</field>
             <field name="view_mode">tree,form,kanban</field>
         </record>   
-        
-        <menuitem name="Flota Incupasaje" id="menu_flota_inc_root"/>
-
-        <menuitem name="Flota" id="menu_flota_inc" parent="menu_flota_inc_root"
-          action="flota_inc_action_window"/>/
-
-        <menuitem name="San Jose" id="menu3_flota_inc" parent="menu_flota_inc"
-          action="flota_granja_action_window"/>
 
     </data>
 </odoo>
